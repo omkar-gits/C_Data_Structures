@@ -38,15 +38,14 @@ void InsertFirst(struct node**ppHead , int iNO){
     *ppHead = pNewNode;
 }
 
-void Display(struct node *pHead){
+void Display(struct node*pHead){
     if(NULL == pHead){
-        printf("The list is already Empty..!1\n");
+        printf("The List is empty..!\n");
         return;
     }
     while(pHead != NULL){
-        printf("|%d|->",pHead->iData);
+        printf("|%d|->", pHead->iData);
         pHead = pHead->pNext;
     }
-    printf("NULL");
-    return;
+    printf("NULL\n");
 }
