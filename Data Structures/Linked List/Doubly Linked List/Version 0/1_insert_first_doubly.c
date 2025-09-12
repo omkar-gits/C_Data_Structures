@@ -49,7 +49,6 @@ void Display(struct node*pHead){
     }
     printf("NULL");
     while(pHead != NULL){
-        
         printf("<-|%d|->", pHead->iData);
         pHead = pHead->pNext;
     }
