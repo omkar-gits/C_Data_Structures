@@ -19,6 +19,7 @@ int main(void){
     InsertFirst(&pFirst , 10);
     Display(pFirst);
     //DeleteAll(&pFirst);
+    //Display(pFirst);
 }
 
 void InsertFirst(struct node**ppHead , int iNo){
@@ -52,9 +53,4 @@ void Display(struct node*pHead){
     printf("NULL\n");
 }
 
-// void DeleteAll(struct node** pphead){
-//     struct node* pTemp = NULL;
-//     if(NULL == *ppHead){
-
-//     }
 
