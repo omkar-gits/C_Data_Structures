@@ -32,11 +32,6 @@ void InsertFirst(struct node**ppHead , int iNo){
         return;
     }
    pNewNode->iData = iNo;
-
-//    if(NULL == *ppHead){
-//     pNewNode->pNext = NULL;
-//     *ppHead = pNewNode;
-//    }
    pNewNode->pNext = *ppHead;
    *ppHead = pNewNode;
    return;
@@ -54,7 +49,6 @@ void Display(struct node*pHead){
     printf("NULL\n");
 }
 
-//need to find the first node where the key is present 
 int SearchFirstOccurence(struct node* pHead , int iKey){
     int iPos = 0;
     while(pHead != NULL){
