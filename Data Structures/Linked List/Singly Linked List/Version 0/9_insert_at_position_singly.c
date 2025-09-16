@@ -31,7 +31,7 @@ int main(void){
     Display(pFirst);
     DeleteAll(&pFirst);
     Display(pFirst);
-
+    return 0;
 }
 void InsertFirst(struct node** ppHead , int iNo){
     struct node* pNewNode = NULL;
@@ -41,7 +41,6 @@ void InsertFirst(struct node** ppHead , int iNo){
         return;
     }
     pNewNode->iData = iNo;
-
     pNewNode->pNext = *ppHead;
     *ppHead = pNewNode;
 }
