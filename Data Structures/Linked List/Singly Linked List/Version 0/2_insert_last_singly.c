@@ -18,7 +18,8 @@ int main(void){
     InsertLast(&pFirst , 40);
     InsertLast(&pFirst , 50);
     Display(pFirst);
-    // DeleteAll(&pFirst);
+    DeleteAll(&pFirst);
+    Display(pFirst);
 }
 
 void InsertLast(struct node **ppHead , int iNo){
@@ -55,4 +56,18 @@ void Display(struct node*pHead){
         pHead = pHead->pNext;
     }
     printf("NULL\n");
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node* pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
 }

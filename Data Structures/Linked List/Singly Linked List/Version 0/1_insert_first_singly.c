@@ -31,11 +31,6 @@ void InsertFirst(struct node**ppHead , int iNo){
        return; 
     }
     pNewNode->iData = iNo;
-    //Commented for Optimisation
-    // if(NULL == *ppHead){
-    //     pNewNode->pNext = NULL;
-    //     *ppHead = pNewNode;
-    // }
     pNewNode->pNext = *ppHead;
     *ppHead = pNewNode;
     return;
@@ -53,4 +48,15 @@ void Display(struct node*pHead){
     printf("NULL\n");
 }
 
-
+void DeleteAll(struct node**ppHead){
+    struct node* pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
+}
