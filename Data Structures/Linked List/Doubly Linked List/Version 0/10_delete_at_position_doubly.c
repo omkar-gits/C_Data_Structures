@@ -58,7 +58,7 @@ void InsertFirst(struct node **ppHead, int iNo)
         *ppHead = pNewNode;
         return;
     }
-
+    
     (*ppHead)->pPrev = pNewNode;
     pNewNode->pNext = *ppHead;
     *ppHead = pNewNode;
