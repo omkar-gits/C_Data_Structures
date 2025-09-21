@@ -9,6 +9,7 @@ struct node{
 
 void InsertFirst(struct node** , int);
 void Display(struct node*);
+void DeleteAll(struct node**);
 
 int main(void){
     struct node *pFirst = NULL;
@@ -35,12 +36,13 @@ void InsertFirst(struct node**ppHead , int iNO){
     if(NULL == *ppHead){
         pNewNode->pNext = NULL;
         *ppHead = pNewNode;
+        return;
     }
-    else{
-        pNewNode->pNext = *ppHead;
-        (*ppHead)->pPrev = pNewNode;
-        *ppHead = pNewNode;
-    }
+    
+    pNewNode->pNext = *ppHead;
+    (*ppHead)->pPrev = pNewNode;
+    *ppHead = pNewNode;
+
 }
 
 void Display(struct node*pHead){
@@ -54,4 +56,17 @@ void Display(struct node*pHead){
         pHead = pHead->pNext;
     }
     printf("NULL\n");
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node * pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
 }

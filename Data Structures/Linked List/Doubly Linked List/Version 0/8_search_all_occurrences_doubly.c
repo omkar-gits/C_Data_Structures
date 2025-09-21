@@ -9,6 +9,7 @@ struct node{
 void InsertLast(struct node** , int);
 void Display(struct node*);
 int SearchAllOccurences(struct node* , int);
+void DeleteAll(struct node**);
 
 int main(void){
     struct node* pFirst = NULL;
@@ -26,6 +27,8 @@ int main(void){
     Display(pFirst);
     int iAllOccurences = SearchAllOccurences(pFirst , iToBeSearched);
     printf("All Occurences of %d in the list are %d",iToBeSearched , iAllOccurences);
+    DeleteAll(&pFirst);
+    return 0;
 }
 
 void InsertLast(struct node** ppHead , int iNo){
@@ -73,4 +76,30 @@ int SearchAllOccurences(struct node* pHead , int iKey){
         pHead = pHead->pNext;
     }
     return iCount;
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node * pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node * pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
 }

@@ -10,6 +10,7 @@ struct node{
 void InsertFirst(struct node** , int);
 void Display(struct node*);
 int SearchFirstOccurence(struct node* , int);
+void DeleteAll(struct node**);
 
 int main(void){
     int iToBeSearched = 20;
@@ -20,6 +21,7 @@ int main(void){
     InsertFirst(&pFirst , 10);
     Display(pFirst);
     printf("The first occurence of %d is at position %d \n",iToBeSearched ,SearchFirstOccurence(pFirst , iToBeSearched));
+    DeleteAll(&pFirst);
     return 0;
 }
 
@@ -60,4 +62,17 @@ int SearchFirstOccurence(struct node*pHead , int iKey){
         pHead = pHead->pNext;
     }
     return iPos;
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node * pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
 }

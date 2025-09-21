@@ -10,6 +10,7 @@ struct node{
 void InsertFirst(struct node** , int);
 void Display(struct node*);
 int DeleteFirst(struct node**);
+void DeleteAll(struct node**);
 
 int main(void){
     struct node* pFirst = NULL;
@@ -23,6 +24,7 @@ int main(void){
     iDeletedData = DeleteFirst(&pFirst);
     Display(pFirst);
     printf("The deleted data is %d", iDeletedData);
+    DeleteAll(&pFirst);
 }
 
 
@@ -69,7 +71,6 @@ int DeleteFirst(struct node**ppHead){
         free(*ppHead);
         *ppHead = NULL;
     }
-
     else{
         *ppHead = (*ppHead)->pNext;
         (*ppHead)->pPrev->pNext = NULL;
@@ -78,5 +79,18 @@ int DeleteFirst(struct node**ppHead){
     }
 
     return iDelData;
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node * pTemp = NULL;
+    if(NULL == *ppHead){
+        return;
+    }
+    while(*ppHead != NULL){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    return;
 }
 
