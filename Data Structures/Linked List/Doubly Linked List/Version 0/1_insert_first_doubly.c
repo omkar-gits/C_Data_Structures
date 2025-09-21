@@ -18,7 +18,7 @@ int main(void){
     InsertFirst(&pFirst , 20);
     InsertFirst(&pFirst , 10);
     Display(pFirst);
-    // DeleteAll(&pFirst);
+    DeleteAll(&pFirst);
     return 0;
 }
 
@@ -36,9 +36,10 @@ void InsertFirst(struct node**ppHead , int iNO){
         pNewNode->pNext = NULL;
         *ppHead = pNewNode;
     }
-    else{pNewNode->pNext = *ppHead;
-    (*ppHead)->pPrev = pNewNode;
-    *ppHead = pNewNode;
+    else{
+        pNewNode->pNext = *ppHead;
+        (*ppHead)->pPrev = pNewNode;
+        *ppHead = pNewNode;
     }
 }
 
