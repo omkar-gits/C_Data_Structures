@@ -10,6 +10,7 @@ void InsertFirst(struct node** , int);
 void Display(struct node*);
 int SearchFirstOccurence(struct node* , int);
 int SearchLastOccurence(struct node* pHead , int);
+void DeleteAll(struct node**);
 
 int main(void){
     int iKey = 40;
@@ -22,6 +23,10 @@ int main(void){
     Display(pFirst);
     int FirstOccurence = SearchFirstOccurence(pFirst , iKey);
     printf("The First occurence of %d is at node number %d",iKey,FirstOccurence);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
+    return 0;
 }
 
 void InsertFirst(struct node**ppHead , int iNo){
@@ -58,19 +63,19 @@ int SearchFirstOccurence(struct node* pHead , int iKey){
         }
         pHead = pHead->pNext;
     }
-    return 0;
+    return iPos;
 }
 
-int SearchLastOccurence(struct node* pHead , int iKey){
-    int iPos = 0;
-    int iLastOccurence = 0;
-
-    while(pHead != NULL){
-        iPos++;
-        if(pHead->iData == iKey){
-            iLastOccurence = iPos;
-        }
-        pHead = pHead->pNext;
+void DeleteAll(struct node** ppHead){
+    struct node* pTemp = NULL;
+        if(NULL == *ppHead){
+        return;
     }
-    return iLastOccurence;
+    while(NULL == *ppHead){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    pTemp = NULL;
+    return;
 }

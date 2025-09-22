@@ -18,8 +18,11 @@ int main(void){
     InsertFirst(&pFirst , 20);
     InsertFirst(&pFirst , 10);
     Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
+    return 0;
 }
 
 void InsertFirst(struct node**ppHead , int iNo){

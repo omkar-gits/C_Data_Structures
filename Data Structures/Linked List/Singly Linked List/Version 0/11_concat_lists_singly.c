@@ -31,7 +31,9 @@ int main(void){
 
     ConcatLists(&pFirst , &pSecond);
     Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
     Display(pSecond);
 

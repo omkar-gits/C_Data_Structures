@@ -18,8 +18,11 @@ int main(void){
     InsertLast(&pFirst , 40);
     InsertLast(&pFirst , 50);
     Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
+    return 0;
 }
 
 void InsertLast(struct node **ppHead , int iNo){

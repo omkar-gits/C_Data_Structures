@@ -9,6 +9,7 @@ struct node{
 void InsertLast(struct node**, int);
 void Display(struct node*);
 int DeleteLast(struct  node**);
+void DeleteAll(struct node**);
 
 int main(void){
     struct node* pFirst = NULL;
@@ -20,6 +21,10 @@ int main(void){
     Display(pFirst);
     int iDeletedData = DeleteLast(&pFirst);
     Display(pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
+    return 0;
 }
 
 void InsertLast(struct node** ppHead , int iNo){
@@ -80,4 +85,19 @@ int DeleteLast(struct node** ppHead){
     iDeletedData = pTemp->pNext->iData;
     free(pTemp->pNext);
     pTemp->pNext = NULL;
+    return iDeletedData;
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node* pTemp = NULL;
+        if(NULL == *ppHead){
+        return;
+    }
+    while(NULL == *ppHead){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    pTemp = NULL;
+    return;
 }

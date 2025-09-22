@@ -21,7 +21,9 @@ int main(void){
     Display(pFirst);
     PhysicalReverse(&pFirst);
     Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
 }
 

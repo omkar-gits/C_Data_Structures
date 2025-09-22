@@ -33,7 +33,9 @@ int main(void){
 
     ConcatAtPosition(&pFirst , &pSecond , 4);
     Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
     Display(pSecond);
 

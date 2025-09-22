@@ -29,7 +29,9 @@ int main(void)
     iDeletedData = DeleteAtPosition(&pFirst, iPosition);
     Display(pFirst);
     printf("Deleted Data at Postion %d  is %d\n", iPosition, iDeletedData);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     return 0;
 }
 
@@ -59,7 +61,6 @@ void InsertLast(struct node **ppHead, int iNo)
     pTemp->pNext = pNewNode;
     return;
 }
-
 
 int DeleteFirst(struct node **ppHead)
 {

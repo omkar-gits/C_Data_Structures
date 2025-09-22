@@ -9,6 +9,7 @@ struct node{
 void InsertLast(struct node** , int);
 void Display(struct node*);
 int CountNodes(struct node*);
+void DeleteAll(struct node**);
 
 int main(void){
     struct node* pFirst = NULL;
@@ -23,7 +24,10 @@ int main(void){
     InsertLast(&pFirst , 80);
     Display(pFirst);
     printf("Number of Nodes in the Linked List = %d\n", CountNodes(pFirst));
-    
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
+    return 0;
 }
 
 void InsertLast(struct node** ppHead , int iNo){
@@ -66,9 +70,23 @@ void Display(struct node* pHead){
 
 int CountNodes(struct node* pHead){
     int iCount = 0;
-    while(pHead != NULL){
+    while(NULL != pHead){
         iCount++;
         pHead = pHead->pNext;
     }
     return iCount;
+}
+
+void DeleteAll(struct node** ppHead){
+    struct node* pTemp = NULL;
+        if(NULL == *ppHead){
+        return;
+    }
+    while(NULL == *ppHead){
+        pTemp = *ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+    }
+    pTemp = NULL;
+    return;
 }

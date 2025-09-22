@@ -21,8 +21,9 @@ int main(void){
     InsertLast(&pFirst , 50);
     Display(pFirst);
     ReverseDisplay(pFirst);
-    Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
 }
 

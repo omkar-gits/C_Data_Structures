@@ -29,7 +29,9 @@ int main(void){
     Display(pFirst);
     InsertAtPosition(&pFirst,500,4);
     Display(pFirst);
-    DeleteAll(&pFirst);
+    if(NULL != pFirst){
+        DeleteAll(&pFirst);
+    }
     Display(pFirst);
     return 0;
 }
