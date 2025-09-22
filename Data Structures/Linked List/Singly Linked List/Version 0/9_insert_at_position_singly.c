@@ -22,12 +22,12 @@ int main(void){
     InsertLast(&pFirst , 40);
     InsertLast(&pFirst , 50);
     InsertLast(&pFirst , 60);
-    InsertAtPosition(&pFirst,100,1);
-    InsertAtPosition(&pFirst,200,2);
-    InsertAtPosition(&pFirst,300,3);
-    InsertAtPosition(&pFirst,400,4);
+    // InsertAtPosition(&pFirst,100,1);
+    // InsertAtPosition(&pFirst,200,2);
+    // InsertAtPosition(&pFirst,300,3);
+    // InsertAtPosition(&pFirst,400,4);
     Display(pFirst);
-    InsertAtPosition(&pFirst,500,4);
+    InsertAtPosition(&pFirst,500,7);
     Display(pFirst);
     if(NULL != pFirst){
         DeleteAll(&pFirst);
@@ -97,13 +97,13 @@ void InsertAtPosition(struct node** ppHead , int iNo , int iPos){
         InsertFirst(ppHead , iNo);
         return;
     }
-    if(iPos == iCounter+1){//if Position last
-        InsertLast(ppHead , iNo);
-        return;
-    }
+    // if(iPos == iCounter+1){//if Position last
+    //     InsertLast(ppHead , iNo);
+    //     return;
+    // }
     else{
         struct node* pNewNode = NULL;
-            pNewNode = (struct node*)malloc(sizeof(struct  node));
+        pNewNode = (struct node*)malloc(sizeof(struct  node));
         if(NULL == pNewNode){
             printf("Memory Allocation Failed..\n");
             return;
@@ -111,12 +111,13 @@ void InsertAtPosition(struct node** ppHead , int iNo , int iPos){
         pNewNode->iData = iNo;
         iCounter = 1;
         pTemp = *ppHead;
-        while(iCounter != iPos-1){
+        while(iCounter < iPos-1){
             iCounter++;
             pTemp = pTemp->pNext;
         }
         pNewNode->pNext = pTemp->pNext;
         pTemp->pNext = pNewNode;
+        return;
     }
 }
 

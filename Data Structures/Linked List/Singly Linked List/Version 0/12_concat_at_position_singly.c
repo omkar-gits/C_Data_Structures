@@ -31,7 +31,7 @@ int main(void){
     Display(pFirst);
     Display(pSecond);
 
-    ConcatAtPosition(&pFirst , &pSecond , 4);
+    ConcatAtPosition(&pFirst , &pSecond , 1);
     Display(pFirst);
     if(NULL != pFirst){
         DeleteAll(&pFirst);
@@ -101,24 +101,18 @@ void ConcatLists(struct node** ppHead1 , struct node** ppHead2){
  *  0       0       0 direct return -DOne
  *  1       0       0 direct return -Done
  *  0       1       second becomes first , second is nulled -D0ne
- *  1       1       Concat second at First's end 
+ *  1       1       Concat second at First's end - Done
  * 
  * Position Scenarios
  * Position <=0 -- Invalid pos Done
  * Position > size+1 -- Invalid pos Done
- * position in between two nodes
- * 
- *
- * iPos=4
- * ic  = 3
- *       pt   
- * 10->20->30->40->50->NULL  
- * 100->200->300->400->500->NULL   
+ * position in between two nodes Done
+ *   
 */
 
 void ConcatAtPosition(struct node** ppHead1 , struct node** ppHead2 , int iPos){
     int iListSize = CountNodes(*ppHead1);
-    int iCount = 0;
+    int iCount ;
     struct node* pTemp1 = NULL;
     struct node* pTemp2 = NULL;
     if(iPos <= 0 || iPos > iListSize + 1 ){
@@ -128,7 +122,9 @@ void ConcatAtPosition(struct node** ppHead1 , struct node** ppHead2 , int iPos){
         return;
     }
     if(1 == iPos){
-        ConcatLists(ppHead1 , ppHead2);
+        ConcatLists(ppHead2 , ppHead1);
+        *ppHead1 = *ppHead2;
+        *ppHead2 = NULL;
         return;
     }
     else{
@@ -148,9 +144,6 @@ void ConcatAtPosition(struct node** ppHead1 , struct node** ppHead2 , int iPos){
         pTemp1->pNext = *ppHead2;
         *ppHead2 = NULL;
         return;
-
-
-
     }
 }
 

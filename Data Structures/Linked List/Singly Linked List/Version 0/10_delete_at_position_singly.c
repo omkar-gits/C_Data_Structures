@@ -155,12 +155,10 @@ int DeleteAtPosition(struct node **ppHead, int iPos)
         iDeletedData = DeleteLast(ppHead);
         return iDeletedData;
     }
-
     if (*ppHead == NULL)
     {
         return -1;
     }
-
     iSize = 1;
     pTemp1 = *ppHead;
     while (iSize < iPos - 1)
