@@ -116,5 +116,6 @@ void ConcatLists(struct node** ppHead1 , struct node** ppHead2 ){
     pTemp->pNext = *ppHead2;
     (*ppHead2)->pPrev = pTemp;
     *ppHead2 = NULL;
+    pTemp = NULL;
     return;
 }

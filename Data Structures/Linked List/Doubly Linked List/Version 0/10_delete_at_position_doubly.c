@@ -18,7 +18,7 @@ int DeleteAtPosition(struct node **, int);
 
 int main(void)
 {
-    int iPosition = 5;
+    int iPosition = 3;
     struct node *pFirst = NULL;
     InsertFirst(&pFirst, 50);
     InsertFirst(&pFirst, 40);
@@ -173,13 +173,18 @@ int DeleteAtPosition(struct node **ppHead, int iPos)
         iCount++;
         pTemp = pTemp->pNext;
     }
-    pTemp->pPrev->pNext = pTemp->pNext;
-    // if(pTemp->pNext != NULL){
-    //     pTemp->pNext->pPrev = pTemp->pPrev;
-    // }
-    pTemp->pNext->pPrev = pTemp->pPrev;
-    iDeletedData = pTemp->iData;
-    free(pTemp);
+    // pTemp->pPrev->pNext = pTemp->pNext;
+    // // if(pTemp->pNext != NULL){
+    // //     pTemp->pNext->pPrev = pTemp->pPrev;
+    // // }
+    // pTemp->pNext->pPrev = pTemp->pPrev;
+    // iDeletedData = pTemp->iData;
+    // free(pTemp);
+    // pTemp = NULL;
+    // return iDeletedData;
+    iDeletedData = pTemp->pNext->iData;
+    pTemp->pNext = pTemp->pNext->pNext;
+    free(pTemp->pNext->pPrev);
     pTemp = NULL;
     return iDeletedData;
 }
