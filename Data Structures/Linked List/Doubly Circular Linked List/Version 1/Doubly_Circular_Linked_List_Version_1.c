@@ -25,107 +25,99 @@ void ReverseDisplay(struct node* , struct node*);
 void DeleteAll(struct node** , struct node**);
 
 int main(void){
-struct node* pFirst_1 = NULL;
-    struct node* pLast_1 = NULL;
+    int iData;
+    struct node *pFirst_1 = NULL;
+    struct node *pLast_1 = NULL;
+    struct node *pFirst_2 = NULL;
+    struct node *pLast_2 = NULL;
 
-    struct node* pFirst_2 = NULL;
-    struct node* pLast_2 = NULL;
+    Display(pFirst_1 , pLast_1); // List is empty
 
-    InsertFirst(&pFirst_1 , &pLast_1 , 50);
-    InsertFirst(&pFirst_1 , &pLast_1 , 40);
-    InsertFirst(&pFirst_1 , &pLast_1 , 30);
-    InsertFirst(&pFirst_1 , &pLast_1 , 20);
-    InsertFirst(&pFirst_1 , &pLast_1 , 10);
+    InsertFirst(&pFirst_1 , &pLast_1, 30);
+    InsertFirst(&pFirst_1 , &pLast_1, 20);
+    InsertFirst(&pFirst_1 , &pLast_1, 10);
 
-    InsertLast(&pFirst_1 , &pLast_1 , 100);
-    InsertLast(&pFirst_1 , &pLast_1 , 200);
-    InsertLast(&pFirst_1 , &pLast_1 , 100);
-    InsertLast(&pFirst_1 , &pLast_1 , 300);
-    InsertLast(&pFirst_1 , &pLast_1 , 100);
-    InsertLast(&pFirst_1 , &pLast_1 , 400);
-    InsertLast(&pFirst_1 , &pLast_1 , 100);
-    InsertLast(&pFirst_1 , &pLast_1 , 500);
-    InsertLast(&pFirst_1 , &pLast_1 , 100);
+    Display(pFirst_1 , pLast_1); // 10 20 30
 
+    InsertLast(&pFirst_1 , &pLast_1, 40);
+    InsertLast(&pFirst_1 , &pLast_1, 50);
+    InsertLast(&pFirst_1 , &pLast_1, 60);
 
-    InsertLast(&pFirst_2 , &pLast_2 , 3321);
-    InsertLast(&pFirst_2 , &pLast_2 , 3322);
-    InsertLast(&pFirst_2 , &pLast_2 , 3323);
-    InsertLast(&pFirst_2 , &pLast_2 , 3324);
+    Display(pFirst_1 , pLast_1); // 10 20 30 40 50 60
 
-    Display(pFirst_1 , pLast_1);
-    printf("\nnode count = %d\n",CountNodes(pFirst_1,pLast_1));
+    InsertAtPosition(&pFirst_1 , &pLast_1, 20, 4);
 
-    int FirstDeleted  = DeleteFirst(&pFirst_1 , &pLast_1);
-    if(-1 != FirstDeleted){
-        printf("First data deleted %d\n", FirstDeleted);
-    }
-    Display(pFirst_1 , pLast_1);
-    printf("\nnode count = %d\n",CountNodes(pFirst_1,pLast_1));
-    int LastDeleted = DeleteLast(&pFirst_1 , &pLast_1);
-     if(-1 != LastDeleted){
-        printf("Last data deleted %d\n", LastDeleted);
-    }
-    Display(pFirst_1 , pLast_1);
-    printf("\nnode count = %d\n",CountNodes(pFirst_1,pLast_1));
-    int iFirstToBeSearched = 100;
-    printf("\nFirst Occurrence of %d is at position %d\n",iFirstToBeSearched, SearchFirstOccurrence(pFirst_1 , pLast_1 , iFirstToBeSearched));
+    Display(pFirst_1 , pLast_1); // 10 20 30 20 40 50 60
 
-    int iLastToBeSearched = 100;
-    printf("\nLast Occurrence of %d is at position %d\n",iLastToBeSearched , SearchLastOccurrence(pFirst_1 , pLast_1 , iLastToBeSearched));
+    iData = DeleteFirst(&pFirst_1 , &pLast_1);
+    if (iData != -1)
+        printf("Deleted data is %d\n", iData); // 10
 
-    int iAllOccurrencesToBeSearched = 100;
-    printf("\nAll Occurrences of %d is/are %d \n", iAllOccurrencesToBeSearched , SearchAllOccurrences(pFirst_1 , pLast_1 , iAllOccurrencesToBeSearched));
+    Display(pFirst_1 , pLast_1); // 20 30 20 40 50 60
 
-    InsertAtPosition(&pFirst_1 , &pLast_1 , 10001, 3);
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
-    InsertAtPosition(&pFirst_1 , &pLast_1 , 100001 , 6);
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
-    InsertAtPosition(&pFirst_1 , &pLast_1 , 100001 , 9);
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
-    int iToBeDeletedPosition = 3;
-    printf("Data at position %d is %d\n", iToBeDeletedPosition , DeleteAtPosition(&pFirst_1 , &pLast_1 , iToBeDeletedPosition));
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
+    iData = DeleteLast(&pFirst_1 , &pLast_1);
+    if (iData != -1)
+        printf("Deleted data is %d\n", iData); // 60
 
+    Display(pFirst_1 , pLast_1); // 20 30 20 40 50
 
-    Display(pFirst_2 , pLast_2);
+    iData = DeleteAtPosition(&pFirst_1 , &pLast_1, 4);
+    if (iData != -1)
+        printf("Deleted data is %d\n", iData); // 40
 
-    printf("\nConcatList\n");
-    //ConcatLists(&pFirst_1 , &pLast_1 , &pFirst_2 , &pLast_2);
-    printf("\n");
+    Display(pFirst_1 , pLast_1); // 20 30 20 50
 
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
-    Display(pFirst_2 , pLast_2);
-    printf("\n");
-    printf("Concat at position\n");
-    ConcatAtPosition(&pFirst_1 , &pLast_1 , &pFirst_2 , &pLast_2 , 5);
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
+    iData = CountNodes(pFirst_1 , pLast_1);
+    printf("Total node count is %d\n", iData); // 4
 
-    printf("Physical Reverse..\n");
+    iData = SearchFirstOccurrence(pFirst_1 , pLast_1, 20);
+    if (iData != 0)
+        printf("First occurrence of %d is at %d position\n", 20, iData); // 1
+
+    iData = SearchLastOccurrence(pFirst_1 , pLast_1, 20);
+    if (iData != 0)
+        printf("Last occurrence of %d is at %d position\n", 20, iData); // 3
+
+    iData = SearchAllOccurrences(pFirst_1 , pLast_1, 20);
+    printf("%d found %d times\n", 20, iData); // 2
+
+    Display(pFirst_1 , pLast_1);        // 20 30 20 50
+    ReverseDisplay(pFirst_1 , pLast_1); // 50 20 30 20
+    Display(pFirst_1 , pLast_1);        // 20 30 20 50
     PhysicalReverse(&pFirst_1 , &pLast_1);
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
-    PhysicalReverse(&pFirst_1 , &pLast_1);
-    Display(pFirst_1 , pLast_1);
-    printf("\n");
+    Display(pFirst_1 , pLast_1); // 50 20 30 20
 
-    printf("Reverse Display..\n");
-    ReverseDisplay(pFirst_1 , pLast_1);
+    InsertLast(&pFirst_2 , &pLast_2, 100);
+    InsertLast(&pFirst_2 , &pLast_2, 200);
+    InsertLast(&pFirst_2 , &pLast_2, 300);
 
-    if(pFirst_1 != NULL){
+    Display(pFirst_1 , pLast_1);  // 50 20 30 20
+    Display(pFirst_2 , pLast_2); // 100 200 300
+    ConcatLists(&pFirst_1 , &pLast_1, &pFirst_2 , &pLast_2);
+    Display(pFirst_1 , pLast_1);  // 50 20 30 20 100 200 300
+    Display(pFirst_2 , pLast_2); // List is empty
+
+    InsertLast(&pFirst_2 , &pLast_2, 400);
+    InsertLast(&pFirst_2 , &pLast_2, 500);
+    InsertLast(&pFirst_2 , &pLast_2, 600);
+
+    Display(pFirst_1 , pLast_1);  // 50 20 30 20 100 200 300
+    Display(pFirst_2 , pLast_2); // 400 500 600
+    ConcatAtPosition(&pFirst_1 , &pLast_1, &pFirst_2 , &pLast_2, 4);
+    Display(pFirst_1 , pLast_1);  // 50 20 30 400 500 600 20 100 200 300
+    Display(pFirst_2 , pLast_2); // List is empty
+    if (pFirst_1 , pLast_1 != NULL)
+    {
         DeleteAll(&pFirst_1 , &pLast_1);
+        pFirst_1 , pLast_1 = NULL;
     }
-    if(pFirst_2 != NULL){
+    if (pFirst_2 , pLast_2 != NULL)
+    {
         DeleteAll(&pFirst_2 , &pLast_2);
+        pFirst_2 , pLast_2 = NULL;
     }
-    Display(pFirst_1 , pLast_1);
-    printf("\nnode count = %d\n",CountNodes(pFirst_1,pLast_1));
+    Display(pFirst_1 , pLast_1);  // List is empty
+    Display(pFirst_2 , pLast_2); // List is empty
     return 0;
 }
 
@@ -376,7 +368,8 @@ void Display(struct node* pHead , struct node* pTail){
         printf("<-|%d|->",pHead->iData);
         pHead = pHead->pNext;
     }while(pHead != pTail->pNext);
-
+    printf("\n");
+    return;
 }
 
 void ConcatLists(struct node** ppHead1 , struct node** ppTail1 , struct node** ppHead2 , struct node** ppTail2){
@@ -458,6 +451,7 @@ void ReverseDisplay(struct node* pHead,  struct node* pTail){
         printf("<-|%d|->", pTail->iData);
         pTail = pTail->pPrev;
     }while(pHead != pTail->pNext);
+    printf("\n");
     return;
 }
 
