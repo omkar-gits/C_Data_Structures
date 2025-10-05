@@ -24,16 +24,10 @@ int main(void){
     if(iData != -1){
         printf("Dequeued data is %d \n", iData);
     }
-
     Display();
-
     return 0;
 }
 
-/**TO  BE  TRIED BY TAKING STACK , FRONT AND REAR LOCAL
- * 
- * 
-*/
 void Enqueue(int iNo){
     if(IsQueueFull()){
         printf("Queue is Full..\n");
