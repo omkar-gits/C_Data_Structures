@@ -107,7 +107,6 @@ int IsSpace(char iSingle){
     return 0;
 }
 
-
 int IsFull(int iTop){
         if(iTop == MAX_LENGTH-1){
         return 1;
@@ -205,4 +204,14 @@ char* InfixToPostfix(char* InputExpression ,char* OutputExpression , char* Opera
     }
 
     return OutputExpression;
+}
+
+/**
+ * Post to Result Conversion cha logic
+ * 
+ * 
+*/
+
+int PostFixToResult(char* PostFixedExpression , char* ResultStack){
+
 }
