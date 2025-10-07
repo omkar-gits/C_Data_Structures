@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
+#include<math.h>
 
 #define MAX_LENGTH   100
 /**
@@ -12,22 +14,12 @@
  *              returns 2 if '*' / '/';
  *              returns 3 if '**' ;
  * 
- * 2) infix to postfix converter function -> uses a Stack to store Polish notation
- *              
- * 
- * 
- * 
+ * 2) infix to postfix converter function -> uses a Stack to store Polish notation 
  * 3) Result calculation functions->
- * 
- * 
- * 
  * 4)IsExpressionValid -> checks for any Alphabet Character and
  *                       whether if 2 operators are contiguous in input Expression or not
- * 
  * 5)Push-> operation to check IsExpressionValid Condition
  *          if IsExpression returns 0 then push that character onto Stack..!
- * 
- * 
 */
 
 void Push(char* , int* , char);
@@ -38,16 +30,18 @@ int IsExpressionValid (char*);
 int IsOperator(char);
 int IsSpace(char);
 char* InfixToPostfix(char*, char* , char* ,int*);
-
-int PostFixToResult(char* , char*);
+void PushInteger(int*, int* , int);
+int PopInteger(int*, int*);
+int PostFixToResult(char* , int* , int*);
 
 int main(void){
     char cInputExpression[MAX_LENGTH];
     char PostFixStack[MAX_LENGTH] = {0};
     char ConvertedToPrefixExpression[MAX_LENGTH];
-    char ResultStack[MAX_LENGTH] = {0};
+    int ResultStack[MAX_LENGTH] = {0};
 
     int iTop = -1;
+    int iIntTop = -1;
 
     scanf("%s", cInputExpression);
     if(IsExpressionValid(cInputExpression) == -1){
@@ -56,6 +50,7 @@ int main(void){
     else{
         printf("Input Expression was %s \n", cInputExpression);
         printf("Converted Expression was %s \n", InfixToPostfix(cInputExpression ,ConvertedToPrefixExpression, PostFixStack , &iTop));
+        printf("Result is %d \n", PostFixToResult(ConvertedToPrefixExpression , ResultStack , &iIntTop));
     }
 
 
@@ -94,6 +89,9 @@ int IsOperator(char iSingle){
     }
     else if(iSingle == '*' || iSingle == '/'){
         return 2;
+    }
+    else if(iSingle == '^'){
+        return 3;
     }
     else{
         return -1;
@@ -152,8 +150,25 @@ char Pop(char* Stack , int *iTop){
     return Stack[(*iTop)--];
 }
 
+void PushInteger(int* Stack , int* iTop , int iSingle ){
+
+    if(IsFull(*iTop)){
+        printf("Stack Overflow..\n");
+        return;
+    }
+    Stack[++ (*iTop)] = iSingle;
+    return;
+}
+
+int PopInteger(int* Stack , int *iTop){
+    if(IsEmpty(*iTop)){
+        return -1;
+    }
+    return Stack[(*iTop)--];
+}
+
 /**
- * Ata infix to prefix madhe
+ * Ata infix to postfix madhe
  * aplya purna expression through iterate karavi lagel
  * 
  * Jr ek element number asla tr tyala eka string madhe append kar
@@ -163,6 +178,9 @@ char Pop(char* Stack , int *iTop){
  *                              DO - pop until stack varchi iTop chi Priority is < Operator of incoming string 
  *                                   AND append it to result String in the sequence of POP
  *         else -> Push Operator on Stack
+ * 
+ * 
+ *  He sagla jhalahyavar Stack varceh sagle operator pop karayche ani tasech String vr push karayche
  * 
  * 
  * 
@@ -208,10 +226,35 @@ char* InfixToPostfix(char* InputExpression ,char* OutputExpression , char* Opera
 
 /**
  * Post to Result Conversion cha logic
- * 
+ * post fixed expression gheycha
+ * if postfixed expression[i] is number -> push on stack
+ * if postfixed expression[i] is operator , tr pop itop ,again pop itop2 retrun itop1 operator itop2
  * 
 */
 
-int PostFixToResult(char* PostFixedExpression , char* ResultStack){
+int PostFixToResult(char* PostFixedExpression, int* ResultStack, int* iTop){ 
+    int iCounter = 0;
+    int Operand1 , Operand2 , Result;
 
+    for( ; iCounter < strlen(PostFixedExpression) ; iCounter++){
+        if(IsOperator(PostFixedExpression[iCounter]) < 0){
+            PushInteger(ResultStack , iTop , (PostFixedExpression[iCounter] - '0'));
+        }
+        else{
+            Operand2 = PopInteger(ResultStack , iTop);
+            Operand1 = PopInteger(ResultStack , iTop);
+            switch (PostFixedExpression[iCounter]){
+                case '+' : Result = Operand1 + Operand2;
+                break;
+                case '-' : Result = Operand1 - Operand2;
+                break;
+                case '*' : Result = Operand1 * Operand2;
+                break;
+                case '/' : Result = Operand1 / Operand2;
+                break;
+            }
+            PushInteger(ResultStack , iTop , Result);
+        }
+    }
+    return PopInteger(ResultStack , iTop);
 }
