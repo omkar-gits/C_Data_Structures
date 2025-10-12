@@ -252,6 +252,8 @@ int PostFixToResult(char* PostFixedExpression, int* ResultStack, int* iTop){
                 break;
                 case '/' : Result = Operand1 / Operand2;
                 break;
+                case '^' : Result = pow(Operand1,Operand2);
+                break;
             }
             PushInteger(ResultStack , iTop , Result);
         }
