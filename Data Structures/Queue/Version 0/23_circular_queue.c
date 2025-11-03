@@ -127,6 +127,8 @@ int main(void){
     
     Enqueue(Queue , 10 , &iRear , iFront);
     Enqueue(Queue , 20 , &iRear , iFront);
+    Enqueue(Queue , 30 , &iRear , iFront);
+    Enqueue(Queue , 40 , &iRear , iFront);
    
 
     Display(Queue , iRear , iFront);
@@ -191,23 +193,64 @@ int IsQueueEmpty(int iRear){
 }
 
 //Version 1
+
+// void Display(int* iQueue , int iRear , int iFront){
+//     int iCounter;
+//     if(iRear == -1){
+//         printf("Queue is empty..!\n");
+//         return;
+//     }
+//     if(iFront > iRear){ //Circular scenario
+//         for(iCounter = iFront ; iCounter <= MAX-1 ; iCounter++){
+//             printf("|%d|-" , iQueue[iCounter]);
+//         }
+//         for(iCounter = 0 ; iCounter <= iRear ; iCounter++){
+//             printf("|%d|-" , iQueue[iCounter]);
+//         }
+//     }
+//     else{
+//         for(iCounter = iFront ; iCounter <= iRear ; iCounter++){
+//             printf("|%d|-" , iQueue[iCounter]);
+//         }
+//     }
+// }
+
+//Version 2
+
+// void Display(int* iQueue , int iRear , int iFront){
+//     int iCounter = iFront;
+//     if(iRear == -1){
+//         printf("Queue is empty..!\n");
+//         return;
+//     }
+//     if(iFront > iRear){
+//         for(; iCounter < MAX -1 ; iCounter++){
+//             printf("|%d|-" , iQueue[iCounter]);
+//             iCounter = 0;
+//         }
+//     }
+
+//     for(; iCounter <= iRear ; iCounter++){
+//          printf("|%d|-" , iQueue[iCounter]);
+//     }
+// }
+
+//Version 3
+
 void Display(int* iQueue , int iRear , int iFront){
-    int iCounter;
+    int iCounter = iFront;
     if(iRear == -1){
         printf("Queue is empty..!\n");
         return;
     }
-    if(iFront > iRear){ //Circular scenario
-        for(iCounter = iFront ; iCounter <= MAX-1 ; iCounter++){
-            printf("|%d|-" , iQueue[iCounter]);
+    while(1){
+        printf("|%d|-" , iQueue[iCounter]);
+        if(iCounter == iRear){
+            break;
         }
-        for(iCounter = 0 ; iCounter <= iRear ; iCounter++){
-            printf("|%d|-" , iQueue[iCounter]);
+        if(iCounter == MAX-1){
+            iCounter = -1;
         }
-    }
-    else{
-        for(iCounter = iFront ; iCounter <= iRear ; iCounter++){
-            printf("|%d|-" , iQueue[iCounter]);
-        }
-    }
+        iCounter++;
+    }   
 }

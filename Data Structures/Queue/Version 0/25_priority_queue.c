@@ -31,7 +31,7 @@ int main(void){
 
     Display(pPQueue);
 
-    printf("Deleted Data is %d", DeQueue(&pPQueue));
+    printf("Deleted Data is %d \n", DeQueue(&pPQueue));
     
     Display(pPQueue);
 

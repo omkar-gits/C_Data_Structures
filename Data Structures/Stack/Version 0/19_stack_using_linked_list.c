@@ -62,7 +62,7 @@ int Pop(struct node** ppHead){
     int iPoppedData;
     struct node* pTemp = NULL;
     if(IsEmpty(*ppHead)){
-        printf("Stack already empty..1\n");
+        printf("Stack already empty..!\n");
         return -1;
     }
     else{

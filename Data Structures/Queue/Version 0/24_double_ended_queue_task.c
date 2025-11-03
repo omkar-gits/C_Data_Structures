@@ -35,7 +35,12 @@ int main(void){
 
     DeletedData = DequeueAtFront(iQueue , &iRear , &iFront);
     if(-1 != DeletedData){
-        printf("Deleted data is %d ", DeletedData);
+        printf("\nDeleted data is %d \n", DeletedData);
+    }
+
+    DeletedData = DequeueFromRear(iQueue , &iRear , &iFront);
+    if(-1 != DeletedData){
+        printf("\nDeleted data is %d \n", DeletedData);
     }
 
    Display(iQueue , iRear , iFront);
