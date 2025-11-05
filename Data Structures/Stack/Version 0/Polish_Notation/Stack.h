@@ -1,7 +1,5 @@
-#ifndef STACK_H_
-#define STACK_H_
+#define STACK_MAX   50
 
-
-
-
-#endif
+void Push(long);
+long Pop(void);
+int IsEmpty(void);

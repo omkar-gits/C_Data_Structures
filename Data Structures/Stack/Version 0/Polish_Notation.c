@@ -59,7 +59,6 @@ int main(void){
 
 int IsExpressionValid (char* ExpressionToBeChecked){
     char operator[2];
-    //size_t ExpressionSize = strlen(ExpressionToBeChecked);
     int iCounter = 0;
     int iInternal = 0;
 
