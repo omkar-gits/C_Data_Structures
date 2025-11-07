@@ -1,6 +1,8 @@
 {
     "cmake.sourceDirectory": "D:/Coding/ChessApp",
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "malloc.h": "c",
+        "stdio.h": "c"
     }
 }

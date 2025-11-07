@@ -1,0 +1,64 @@
+int main(void)
+{
+    struct TreeNode *pPtr = NULL;
+    struct TreeNode *pRoot = NULL;
+
+    struct QueueNode *pQueueHead = NULL;
+
+    InsertBST(&pRoot, 100);
+    InsertBST(&pRoot, 70);
+    InsertBST(&pRoot, 143);
+    InsertBST(&pRoot, 28);
+    InsertBST(&pRoot, 77);
+    InsertBST(&pRoot, 120);
+    InsertBST(&pRoot, 150);
+    InsertBST(&pRoot, 128);
+
+    printf("Preorder is:\n");
+    Preorder(pRoot); // 100 70 28 77 143 120 128 150
+    printf("Inorder is:\n");
+    Inorder(pRoot); // 28 70 77 100 120 128 143 150
+    printf("Postorder is:\n");
+    Postorder(pRoot); // 28 77 70 128 120 150 143 100
+    printf("Level order is:\n");
+    LevelOrder(pRoot); // 100 70 143 28 77 120 150 128
+
+    printf("Total node count is %d\n", CountNodesVer1(pRoot)); // 8
+    printf("Total node count is %d\n", CountNodesVer2(pRoot)); // 8
+    printf("Leaf node count is %d\n", CountLeafNodes(pRoot)); // 4
+    printf("NonLeaf node count is %d\n", CountNonLeafNodes(pRoot)); // 4
+    printf("Height of tree is %d\n", Height(pRoot)); // 4
+    printf("Smallest element is %d\n", SmallestElementBST(pRoot)); // 28
+    printf("Largest element is %d\n", LargestElementBST(pRoot)); // 150
+
+    pPtr = SearchRecursiveBST(pRoot, 120);
+    if(NULL == pPtr)
+        printf("%d not found\n", 120);
+    else
+        printf("%d found", 120);
+
+    pPtr = SearchNonRecursiveBST(pRoot, 120);
+    if(NULL == pPtr)
+        printf("%d not found\n", 120);
+    else
+        printf("%d found", 120);
+
+    DeleteBST(&pRoot, 28);
+    LevelOrder(pRoot); // 100 70 143 77 120 150 128
+    DeleteBST(&pRoot, 120);
+    LevelOrder(pRoot); // 100 70 143 77 128 150
+    DeleteBST(&pRoot, 143);
+    LevelOrder(pRoot); // 100 70 150 77 128
+    DeleteBST(&pRoot, 100);
+    LevelOrder(pRoot); // 128 70 150 77
+
+    printf("Total node count is %d\n", CountNodesVer1(pRoot)); // 4
+
+    if(pRoot != NULL)
+    {
+        DeleleAll(&pRoot);
+        pRoot = NULL;
+    }
+
+    return 0;
+}
