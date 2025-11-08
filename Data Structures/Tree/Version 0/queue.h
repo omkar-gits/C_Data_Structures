@@ -12,7 +12,7 @@ struct QueueNode{
 };
 
 void Enqueue(struct QueueNode**, struct TreeNode*);
-struct Treenode* Dequeue(struct QueueNode**);
+struct TreeNode* Dequeue(struct QueueNode** ppHead);
 int IsQueueEmpty(struct QueueNode*);
 int IsQueueFull(struct QueueNode*);
 int CountNodes(struct QueueNode*);
