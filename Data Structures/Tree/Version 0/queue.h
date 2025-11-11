@@ -16,3 +16,4 @@ struct TreeNode* Dequeue(struct QueueNode** ppHead);
 int IsQueueEmpty(struct QueueNode*);
 int IsQueueFull(struct QueueNode*);
 int CountNodes(struct QueueNode*);
+void DeleteAllQueue(struct QueueNode**);

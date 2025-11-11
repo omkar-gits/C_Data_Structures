@@ -6,8 +6,13 @@
 
 void Enqueue(struct QueueNode** ppHead , struct TreeNode* TreeNode){
     struct QueueNode* pNewNode = NULL;
+    struct QueueNode* pTemp = NULL;
+
     if(IsQueueFull(*ppHead)){
         printf("Queue is Full ..!\n");
+        return;
+    }
+    if(TreeNode == NULL){
         return;
     }
     pNewNode = (struct QueueNode*)malloc(sizeof(struct QueueNode));
@@ -15,42 +20,40 @@ void Enqueue(struct QueueNode** ppHead , struct TreeNode* TreeNode){
         printf("Memory Allocation Failed..!\n");
         return;
     }
-    if(TreeNode != NULL){
-        return;
-    }
     pNewNode->pCurrentNode = TreeNode;
+    pNewNode->pNext = NULL;     
     if(NULL == *ppHead){
-        pNewNode->pNext = NULL;
         *ppHead = pNewNode;
         return;
     }
-    pNewNode->pNext = *ppHead;
-    *ppHead = pNewNode;
+    pTemp = *ppHead;
+    while(pTemp->pNext != NULL){
+        pTemp = pTemp->pNext;
+    }
+    pTemp->pNext = pNewNode;
     return;
 }
 
 struct TreeNode* Dequeue(struct QueueNode** ppHead){
     struct TreeNode* DequeuedTreeNode = NULL;
     struct QueueNode* pTemp = NULL;
-    if(NULL == *ppHead || IsQueueEmpty(*ppHead)){
+
+    if(IsQueueEmpty(*ppHead)){
         printf("Queue already Empty..!\n");
-        return;
+        return NULL;
     }
-    DequeuedTreeNode = (*ppHead)->pCurrentNode;
-    if((*ppHead)->pNext == NULL){
-        (*ppHead)->pCurrentNode = NULL;
-        free(*ppHead);
-        *ppHead = NULL;
+    else{
+        DequeuedTreeNode = (*ppHead)->pCurrentNode;
+        pTemp =*ppHead;
+        *ppHead = pTemp->pNext;
+        free(pTemp);
+        pTemp = NULL;
+        return DequeuedTreeNode;
     }
-    pTemp = *ppHead;
-    *ppHead = pTemp->pNext;
-    free(pTemp);
-    pTemp = NULL;
-    return DequeuedTreeNode;
 }
 
 int IsQueueEmpty(struct QueueNode* pHead){
-    if(CountNodes(pHead) == 0){
+    if(pHead == NULL){
         return 1;
     }
     return 0;
@@ -65,10 +68,6 @@ int IsQueueFull(struct QueueNode* pHead){
 
 int CountNodes(struct QueueNode* pHead){
     int iCounter = 0;
-    if(pHead == NULL){
-        printf("Queue is empty..!\n");
-        return -1;
-    }
     while(pHead != NULL){
         iCounter++;
         pHead = pHead->pNext;
@@ -79,7 +78,7 @@ int CountNodes(struct QueueNode* pHead){
 void DeleteAllQueue(struct QueueNode** ppHead){
     struct QueueNode* pTemp = NULL;
     if(*ppHead == NULL){
-        printf("Queue already empty..!\n");
+        //printf("Queue already empty..!\n");
         return;
     }
     while((*ppHead)->pNext != NULL){
